@@ -1,0 +1,331 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}Bosh sahifa{% endblock %}
+
+{% block content %}
+<div class="container">
+    <!-- HERO SECTION -->
+    <section class="hero-section text-center py-5 animate__animated animate__fadeIn">
+        <h1 class="display-4 fw-bold mb-3">
+            <span class="text-primary">📱 Termux Django</span> Blog
+        </h1>
+        <p class="lead text-muted mb-4">
+            Android telefoningizda yaratilgan zamonaviy veb-sayt
+        </p>
+        <div class="d-flex justify-content-center gap-3">
+            <a href="#articles" class="btn btn-primary btn-lg px-4">
+                <i class="fas fa-arrow-down me-2"></i>Maqolalarni ko'rish
+            </a>
+            <a href="{% url 'about' %}" class="btn btn-outline-secondary btn-lg px-4">
+                <i class="fas fa-info-circle me-2"></i>Haqida
+            </a>
+        </div>
+    </section>
+
+<!-- STATISTIKA -->
+<section class="stats-section py-5">
+    <div class="row g-4">
+        <div class="col-md-3 col-6">
+            <div class="stat-card text-center p-4 bg-white rounded-4 shadow-sm">
+                <i class="fas fa-newspaper fa-3x text-primary mb-3"></i>
+                <h2 class="fw-bold mb-0">{{ total_articles }}</h2>
+                <p class="text-muted">Maqolalar</p>
+            </div>
+        </div>
+        <div class="col-md-3 col-6">
+            <div class="stat-card text-center p-4 bg-white rounded-4 shadow-sm">
+                <i class="fas fa-users fa-3x text-success mb-3"></i>
+                <h2 class="fw-bold mb-0">1.2k</h2>
+                <p class="text-muted">O'quvchilar</p>
+            </div>
+        </div>
+        <div class="col-md-3 col-6">
+            <div class="stat-card text-center p-4 bg-white rounded-4 shadow-sm">
+                <i class="fas fa-comments fa-3x text-info mb-3"></i>
+                <h2 class="fw-bold mb-0">350</h2>
+                <p class="text-muted">Izohlar</p>
+            </div>
+        </div>
+        <div class="col-md-3 col-6">
+            <div class="stat-card text-center p-4 bg-white rounded-4 shadow-sm">
+                <i class="fas fa-eye fa-3x text-warning mb-3"></i>
+                <h2 class="fw-bold mb-0">2.5k</h2>
+                <p class="text-muted">Ko'rishlar</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- MAQOLALAR -->
+    <section id="articles" class="articles-section py-5">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="fw-bold">
+                <i class="fas fa-blog me-2 text-primary"></i>Barcha maqolalar
+            </h2>
+            <span class="badge bg-primary p-3 rounded-pill">
+                <small>{{ article.created_date|date:"d.m.Y" }}</small>
+            </span>
+        </div>
+
+        <div class="row g-4">
+            {% for article in articles %}
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100 border-0 shadow-sm hover-card animate__animated animate__fadeInUp" style="animation-delay: {{ forloop.counter0|add:'0.1' }}s">
+                    <!-- Card header -->
+                    <div class="card-header bg-white border-0 pt-4 px-4">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h5 class="card-title fw-bold mb-0">{{ article.title }}</h5>
+                            <span class="badge bg-primary bg-opacity-10 text-primary px-3 py-2 rounded-pill">
+                                <i class="fas fa-star me-1"></i>Yangi
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <!-- Card body -->
+                    <div class="card-body px-4">
+                        <!-- Manzil -->
+                        <div class="info-item d-flex align-items-center mb-3">
+                            <div class="icon-box bg-danger bg-opacity-10 p-2 rounded-3 me-3">
+                                <i class="fas fa-map-marker-alt text-danger"></i>
+                            </div>
+                            <div>
+                                <small class="text-muted d-block">Manzil</small>
+                                <span class="fw-medium">{{ article.location }}</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Telefon -->
+                        <div class="info-item d-flex align-items-center mb-3">
+                            <div class="icon-box bg-success bg-opacity-10 p-2 rounded-3 me-3">
+                                <i class="fas fa-phone text-success"></i>
+                            </div>
+                            <div>
+                                <small class="text-muted d-block">Telefon</small>
+                                <span class="fw-medium">{{ article.phone }}</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Vaqt -->
+                        <div class="info-item d-flex align-items-center">
+                            <div class="icon-box bg-info bg-opacity-10 p-2 rounded-3 me-3">
+                                <i class="far fa-calendar text-info"></i>
+                            </div>
+                            <div>
+                                <small class="text-muted d-block">Yozilgan</small>
+                                <small class="text-muted">
+                                <i class="far fa-calendar-alt me-1"></i>
+                                {{ article.created_date|date:"d.m.Y" }}
+                                <i class="far fa-clock ms-2 me-1"></i>
+                                {{ article.created_date|date:"H:i" }}
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Card footer -->
+                    <div class="card-footer bg-white border-0 pb-4 px-4">
+                        <a href="#" class="btn btn-outline-primary w-100 py-3 rounded-pill read-more-btn">
+                            <span>Batafsil o'qish</span>
+                            <i class="fas fa-arrow-right ms-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12">
+                <div class="alert alert-info text-center py-5">
+                    <i class="fas fa-info-circle fa-3x mb-3"></i>
+                    <h4>Hozircha maqolalar mavjud emas</h4>
+                    <p>Admin panelga kirib maqola qo'shing</p>
+                </div>
+            </div>
+            {% endfor %}
+    </div>  <!-- MAQOLALAR row ni yopish -->
+</section>  <!-- MAQOLALAR section ni yopish -->
+
+<!-- PAGINATION - SAHIFALASH (to'liq versiya) -->
+{% if page_obj.paginator.num_pages > 1 %}
+<section class="pagination-section py-4">
+    <nav aria-label="Sahifalash">
+        <ul class="pagination justify-content-center">
+            <!-- Birinchi sahifa -->
+            {% if page_obj.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page=1" aria-label="Birinchi">
+                    <span aria-hidden="true">&laquo;&laquo;</span>
+                </a>
+            </li>
+            {% else %}
+            <li class="page-item disabled">
+                <span class="page-link">&laquo;&laquo;</span>
+            </li>
+            {% endif %}
+
+            <!-- Oldingi sahifa -->
+            {% if page_obj.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Oldingi">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            {% else %}
+            <li class="page-item disabled">
+                <span class="page-link">&laquo;</span>
+            </li>
+            {% endif %}
+
+            <!-- Sahifa raqamlari (5 ta atrofida) -->
+            {% for num in page_obj.paginator.page_range %}
+                {% if num >= page_obj.number|add:'-2' and num <= page_obj.number|add:'2' %}
+                    {% if num == page_obj.number %}
+                    <li class="page-item active">
+                        <span class="page-link">{{ num }}</span>
+                    </li>
+                    {% else %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                    </li>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+
+            <!-- Keyingi sahifa -->
+            {% if page_obj.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Keyingi">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+            {% else %}
+            <li class="page-item disabled">
+                <span class="page-link">&raquo;</span>
+            </li>
+            {% endif %}
+
+            <!-- Oxirgi sahifa -->
+            {% if page_obj.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}" aria-label="Oxirgi">
+                    <span aria-hidden="true">&raquo;&raquo;</span>
+                </a>
+            </li>
+            {% else %}
+            <li class="page-item disabled">
+                <span class="page-link">&raquo;&raquo;</span>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+
+    <!-- Qo'shimcha ma'lumot -->
+    <div class="text-center text-muted mt-3">
+        <small>
+            <i class="fas fa-file-alt me-1"></i>
+            Sahifa {{ page_obj.number }} / {{ page_obj.paginator.num_pages }} | 
+            Jami {{ page_obj.paginator.count }} ta maqola
+        </small>
+    </div>
+</section>
+{% endif %}
+
+<!-- NEWSLETTER -->
+<section class="newsletter-section py-5">
+    <!-- ... newsletter kodi ... -->
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter-section py-5">
+    ...
+
+    <!-- NEWSLETTER -->
+    <section class="newsletter-section py-5">
+        <div class="card border-0 bg-primary text-white p-5 rounded-5 shadow-lg">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h3 class="fw-bold mb-3">📬 Yangiliklardan xabardor bo'ling</h3>
+                    <p class="opacity-75 mb-0">Eng so'nggi maqolalarni birinchi bo'lib o'qing</p>
+                </div>
+                <div class="col-lg-6">
+                    <div class="input-group">
+                        <input type="email" class="form-control form-control-lg border-0" placeholder="Email manzilingiz">
+                        <button class="btn btn-light btn-lg px-4" type="button">
+                            <i class="fas fa-paper-plane me-2"></i>Obuna bo'lish
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<style>
+    .hover-card {
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+    
+    .hover-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.15) !important;
+    }
+    
+    .icon-box {
+        width: 45px;
+        height: 45px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+    }
+    
+    .hover-card:hover .icon-box {
+        transform: scale(1.1);
+    }
+    
+    .stat-card {
+        transition: all 0.3s ease;
+    }
+    
+    .stat-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.1) !important;
+    }
+    
+    .read-more-btn {
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .read-more-btn i {
+        transition: transform 0.3s ease;
+    }
+    
+    .read-more-btn:hover i {
+        transform: translateX(5px);
+    }
+    
+    .newsletter-section .card {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+    
+    @media (max-width: 768px) {
+        .hero-section h1 {
+            font-size: 2rem;
+        }
+        
+        .newsletter-section .card {
+            padding: 2rem !important;
+        }
+        
+        .input-group {
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .input-group .btn {
+            width: 100%;
+        }
+    }
+</style>
+{% endblock %}

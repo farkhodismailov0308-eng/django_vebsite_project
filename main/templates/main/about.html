@@ -1,0 +1,148 @@
+{% extends 'main/base.html' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row">
+        <div class="col-12 text-center mb-5">
+            <h1 class="display-4 fw-bold animate__animated animate__fadeInDown">
+                <i class="fas fa-info-circle text-primary me-3"></i>Biz haqimizda
+            </h1>
+            <p class="lead text-muted animate__animated animate__fadeInUp">
+                Django va Bootstrap bilan yaratilgan zamonaviy blog
+            </p>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-md-6 animate__animated animate__fadeInLeft">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body p-4">
+                    <h3 class="fw-bold mb-4">
+                        <i class="fas fa-rocket text-primary me-2"></i>Loyiha haqida
+                    </h3>
+                    <p class="text-muted">
+                        Bu loyiha Termux (Android) da Django o'rganish uchun yaratilgan. 
+                        Bootstrap 5 bilan chiroyli dizayn qilingan.
+                    </p>
+                    <ul class="list-unstyled">
+                        <li class="mb-3">
+                            <i class="fas fa-check-circle text-success me-2"></i>
+                            Django 6.0.2
+                        </li>
+                        <li class="mb-3">
+                            <i class="fas fa-check-circle text-success me-2"></i>
+                            Bootstrap 5.3
+                        </li>
+                        <li class="mb-3">
+                            <i class="fas fa-check-circle text-success me-2"></i>
+                            Font Awesome 6
+                        </li>
+                        <li class="mb-3">
+                            <i class="fas fa-check-circle text-success me-2"></i>
+                            SQLite ma'lumotlar bazasi
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 animate__animated animate__fadeInRight">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body p-4">
+                    <h3 class="fw-bold mb-4">
+                        <i class="fas fa-address-card text-primary me-2"></i>Bog'lanish
+                    </h3>
+                    <div class="d-flex align-items-center mb-4">
+                        <div class="icon-box bg-primary bg-opacity-10 p-3 rounded-4 me-3">
+                            <i class="fas fa-envelope text-primary fa-2x"></i>
+                        </div>
+                        <div>
+                            <small class="text-muted d-block">Email</small>
+                            <span class="fw-medium">info@blog.uz</span>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center mb-4">
+                        <div class="icon-box bg-success bg-opacity-10 p-3 rounded-4 me-3">
+                            <i class="fas fa-phone text-success fa-2x"></i>
+                        </div>
+                        <div>
+                            <small class="text-muted d-block">Telefon</small>
+                            <span class="fw-medium">+998 90 501 20 80</span>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <div class="icon-box bg-danger bg-opacity-10 p-3 rounded-4 me-3">
+                            <i class="fas fa-map-marker-alt text-danger fa-2x"></i>
+                        </div>
+                        <div>
+                            <small class="text-muted d-block">Manzil</small>
+                            <span class="fw-medium">Navoiy shahri, O'zbekiston</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-12 animate__animated animate__fadeInUp">
+            <div class="card border-0 bg-primary text-white p-5 rounded-5 shadow-lg">
+                <div class="row align-items-center">
+                    <div class="col-lg-8">
+                        <h3 class="fw-bold mb-2">📱 Termux da Django</h3>
+                        <p class="opacity-75 mb-0">
+                            Android telefoningizda to'liq veb-sayt yaratish imkoniyati
+                        </p>
+                    </div>
+                    <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
+                        <a href="{% url 'index' %}" class="btn btn-light btn-lg px-4 rounded-pill">
+                            <i class="fas fa-arrow-left me-2"></i>Bosh sahifaga qaytish
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .icon-box {
+        width: 60px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+    }
+    
+    .icon-box:hover {
+        transform: scale(1.1);
+    }
+    
+    .card {
+        transition: all 0.3s ease;
+    }
+    
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.1) !important;
+    }
+    
+    @media (max-width: 768px) {
+        .display-4 {
+            font-size: 2rem;
+        }
+        
+        .icon-box {
+            width: 50px;
+            height: 50px;
+        }
+        
+        .icon-box i {
+            font-size: 1.5rem;
+        }
+    }
+</style>
+{% endblock %}
