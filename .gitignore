@@ -1,27 +1,21 @@
 # Python
 __pycache__/
 *.py[cod]
+*.pyc
 *.pyo
 *.pyd
-*.so
-.Python
-
-# Virtual environments
+.env
+venv/
 myenv/
 env/
-venv/
-django_env/
-
-# Database
-*.sqlite3
-*.db
+ENV/
 
 # Django
 *.log
 local_settings.py
+db.sqlite3
 media/
 staticfiles/
-static_root/
 
 # IDE
 .vscode/
@@ -29,11 +23,6 @@ static_root/
 *.swp
 *.swo
 *~
-.DS_Store
-*.bak
 
-# Project specific
-__pycache__/
-*.pyc
-migrations/
-!migrations/__init__.py
+# Termux
+storage/
