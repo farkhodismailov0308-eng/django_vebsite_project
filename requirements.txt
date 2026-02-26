@@ -9,7 +9,6 @@ filelock==3.21.2
 gunicorn==25.1.0
 idna==3.11
 packaging==26.0
-Pillow==10.1.0
 platformdirs==4.7.1
 psycopg2-binary==2.9.11
 requests==2.32.5
