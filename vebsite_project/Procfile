@@ -1,0 +1,1 @@
+web: gunicorn vebsite_project.wsgi --log-file -
